@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A Victory Result stores player scores and a flag if a game-ending victory is achieved or not
@@ -230,6 +231,21 @@ public class VictoryResult {
             ret[i] = ar[i];
         }
         return ret;
+    }
+
+    public void addWinnerRank(Player player){
+        int oldRank = player.getRank();
+        int newRank = oldRank + 5; // 5 is placeholder
+        player.setRank(newRank);
+    }
+
+    public int addGameRank(Game game){
+        List<Player> allPlayers = game.getPlayersList();
+        AtomicInteger bonus = new AtomicInteger();
+        allPlayers.forEach( player -> {
+            bonus.addAndGet(player.getRank());
+        });
+        return 10 + bonus.get() / (allPlayers.size()+1);
     }
 
     @Override

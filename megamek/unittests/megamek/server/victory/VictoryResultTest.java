@@ -164,4 +164,41 @@ public class VictoryResultTest {
         assertEquals(1, victoryResult.getPlayers()[0]);
         assertEquals(2, victoryResult.getPlayers()[1]);
     }
+
+    @Test
+    public void testAddWinnerRank() {
+        Player playerMock = mock(Player.class);
+        when(playerMock.getColorForPlayer()).thenReturn("");
+        when(playerMock.getRank()).thenReturn(5);
+
+        playerMock.setRank(0);
+
+        Game gameMock = mock(Game.class);
+        when(gameMock.getPlayer(anyInt())).thenReturn(playerMock);
+
+        VictoryResult victoryResult = new VictoryResult(true);
+        victoryResult.addPlayerScore(1, 3);
+        victoryResult.addPlayerScore(2, 10);
+
+        victoryResult.addWinnerRank(playerMock);
+
+        assertEquals(5 , playerMock.getRank());
+
+    }
+
+    @Test
+    public void testAddGameRank() {
+        Player playerMock = mock(Player.class);
+        when(playerMock.getColorForPlayer()).thenReturn("");
+
+        Game gameMock = mock(Game.class);
+        when(gameMock.getPlayer(anyInt())).thenReturn(playerMock);
+
+        VictoryResult victoryResult = new VictoryResult(true);
+        victoryResult.addPlayerScore(1, 3);
+        victoryResult.addPlayerScore(2, 10);
+
+        assertEquals(10 , victoryResult.addGameRank(gameMock));
+    }
+
 }

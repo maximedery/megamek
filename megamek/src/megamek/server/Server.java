@@ -57,6 +57,8 @@ public class Server implements Runnable {
     // server setup
     private final String password;
 
+    public Map<String, Integer> leaderboard;
+
     private final IGameManager gameManager;
 
     private final String metaServerUrl;
@@ -1328,6 +1330,13 @@ public class Server implements Runnable {
      */
     public int getPort() {
         return serverSocket.getLocalPort();
+    }
+
+    /**
+     * @return the <code>leaderbpard</code> of this server
+     */
+    public Map<String, Integer> getLeaderBoard() {
+        return this.leaderboard;
     }
 
     /**

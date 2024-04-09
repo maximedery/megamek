@@ -45,6 +45,12 @@ public final class Player extends TurnOrdered {
     private transient IGame game;
 
     private String name;
+
+    private int rank;
+
+    private int win;
+
+    private int lose;
     private String email;
     private final int id;
 
@@ -198,6 +204,32 @@ public final class Player extends TurnOrdered {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+
+    public void setRank(int newRank) {
+        this.rank = newRank;
+    }
+
+    public int getWint(){
+        return win;
+    }
+
+    public void setWin(int newWin) {
+        this.win = newWin;
+    }
+
+    public int getLose() {
+        return lose;
+    }
+
+
+    public void setLose(int newLose) {
+        this.lose = newLose;
     }
 
     public String getEmail() {
